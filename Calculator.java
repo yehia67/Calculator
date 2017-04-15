@@ -30,8 +30,8 @@ public class Calculator extends JFrame  {
      JMenuItem view;
      JMenuItem about;
      
-     JButton zero,decimal,poseneg,one,two,three,four,five,six,seven,eight,nine;
-     
+     JButton clear,equals,zero,decimal,poseneg,one,two,three,four,five,six,seven,eight,nine;
+     JButton divison,multiplication,substraction,addititon;
      int i = 0; 
     String q ;
     public Calculator() {
@@ -44,7 +44,7 @@ public class Calculator extends JFrame  {
     private void sendDisplay(){
         display = new JTextField("0");//maybe bug
        display.setVisible(true);
-        display.setBounds(10,10,324,50);
+        display.setBounds(10,10,280,50);
        display.setEditable(false);
       // display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
        display.setFont(new Font("Arial",Font.PLAIN,32));
@@ -98,6 +98,30 @@ private void sendMenuBar(){
             
 }
  private void sendButton() {
+     
+      divison = new JButton("/");
+     divison.setBounds(226,70,65,55);
+    add( divison);
+     multiplication = new JButton("*");
+     multiplication.setBounds(226,132,65,55);
+     add(multiplication);
+     
+     
+     equals = new JButton("=");
+     equals.setBounds(10,318,137,55);
+     add(equals);
+     clear = new JButton("clear");
+      clear.setBounds(154,318,137,55);
+      clear.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             display.setText("0");
+             i = 0;
+         }
+         });
+        
+      add(clear);     
+     
        zero = new JButton("0");
        zero.setBounds(10,256,65,55);
        zero.addActionListener(new ActionListener(){
@@ -105,7 +129,7 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
+               if(display.getText().length() > 10)
                {   return;}
             if(i == 0) 
                 
@@ -130,7 +154,7 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
+               if(display.getText().length() > 10)
                {   return;}
             if(i == 0) 
                 
@@ -169,7 +193,7 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
+               if(display.getText().length() > 10)
                {   return;}
             if(i == 0) 
                 
@@ -220,7 +244,7 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
+               if(display.getText().length() > 10)
                {   return;}
             if(i == 0) 
                 
@@ -245,7 +269,7 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
+               if(display.getText().length() > 10)
                {   return;}
             if(i == 0) 
                 
@@ -399,7 +423,7 @@ private void sendMenuBar(){
         x.setVisible(true);
         x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        x.setLocationRelativeTo(null);
-       x.setSize(350,400);
+       x.setSize(308,430);
        x.setResizable(false);
        x.setTitle("Calculator");
     
