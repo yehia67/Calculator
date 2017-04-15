@@ -14,6 +14,7 @@ import java.awt.*;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
+import java.util.*;
 
 public class Calculator extends JFrame  {
 
@@ -28,11 +29,16 @@ public class Calculator extends JFrame  {
      JMenuItem copy;
      JMenuItem view;
      JMenuItem about;
+     
+     JButton seven,eight,nine;
+      int i = 0; 
+    String q ;
     public Calculator() {
         //setLayout(new GridLayout());
          setLayout(null);
   sendDisplay();      
   sendMenuBar();
+  sendButton();
     }
     private void sendDisplay(){
         display = new JTextField("0");//maybe bug
@@ -65,8 +71,8 @@ private void sendMenuBar(){
     copy.addActionListener(new ActionListener(){
        
         public void actionPerformed(ActionEvent e) {
-             String display = "";
-             StringSelection string = new StringSelection(display); 
+             String tempdisplay = display.getText();
+             StringSelection string = new StringSelection(tempdisplay); 
              Clipboard system = Toolkit.getDefaultToolkit().getSystemClipboard();
              system.setContents(string, string);
         
@@ -90,6 +96,62 @@ private void sendMenuBar(){
     help.add(about);
             
 }
+ private void sendButton() {
+   
+     seven = new JButton("7");
+       seven.setBounds(10,70,65,55);
+       seven.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "7";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"7";
+                display.setText(q);
+            }
+           }
+       });
+       add(seven);
+       eight = new JButton("8");
+          eight.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+            {
+                q = "8";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"8";
+                display.setText(q);
+            }
+           }
+       });
+       eight.setBounds(82,70,65,55);
+       add(eight);
+       nine = new JButton("9");
+       nine.setBounds(154,70,65,55);
+       add(nine);
+    }
+
     public static void main(String[] args) {
         Calculator  x = new Calculator();
         try{
@@ -107,4 +169,5 @@ private void sendMenuBar(){
     
     }
 
+   
 }
