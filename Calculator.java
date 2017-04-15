@@ -30,8 +30,9 @@ public class Calculator extends JFrame  {
      JMenuItem view;
      JMenuItem about;
      
-     JButton one,two,three,four,five,six,seven,eight,nine;
-      int i = 0; 
+     JButton zero,decimal,poseneg,one,two,three,four,five,six,seven,eight,nine;
+     
+     int i = 0; 
     String q ;
     public Calculator() {
         //setLayout(new GridLayout());
@@ -97,7 +98,70 @@ private void sendMenuBar(){
             
 }
  private void sendButton() {
-       
+       zero = new JButton("0");
+       zero.setBounds(10,256,65,55);
+       zero.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "0";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"0";
+                display.setText(q);
+            }
+           }
+       });
+       add(zero);
+       decimal = new JButton(".");
+       decimal.setBounds(82,256,65,55);
+       decimal.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = ".";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+".";
+                display.setText(q);
+            }
+           }
+       });
+       add(decimal);
+       poseneg = new JButton("+/-");
+       poseneg.setBounds(154,256,65,55);
+      add(poseneg);
+       poseneg.addActionListener(new ActionListener() {
+           @Override
+           public void actionPerformed(ActionEvent e) {
+          if(display.getText().equalsIgnoreCase("0"))
+          return;
+              display.setText(Double.toString(Double.parseDouble(display.getText())*(-1)));
+          if(display.getText().endsWith(".0"))
+              display.setText(display.getText().replaceAll(".0", ""));
+           }
+       });
+          
      one = new JButton("1");
        one.setBounds(10,194,65,55);
        one.addActionListener(new ActionListener(){
