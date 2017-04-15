@@ -30,17 +30,18 @@ public class Calculator extends JFrame  {
      JMenuItem about;
     public Calculator() {
         //setLayout(new GridLayout());
+         setLayout(null);
   sendDisplay();      
   sendMenuBar();
     }
     private void sendDisplay(){
-        display = new JTextField("0");//return b3din
+        display = new JTextField("0");//maybe bug
        display.setVisible(true);
-        display.setBounds(10,10,340,40);
+        display.setBounds(10,10,324,50);
        display.setEditable(false);
        display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
        display.setFont(new Font("Arial",Font.PLAIN,32));
-        add(display);
+       add(display);
     }
 private void sendMenuBar(){
     menuBar = new JMenuBar();
@@ -97,16 +98,13 @@ private void sendMenuBar(){
         } catch(Exception e){
             System.out.println("could not load bayzz");
         } 
-        
-        
-        
         x.setVisible(true);
         x.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        x.setLocationRelativeTo(null);
        x.setSize(350,400);
        x.setResizable(false);
        x.setTitle("Calculator");
-       x.setLayout(null);
+    
     }
 
 }
