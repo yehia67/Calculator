@@ -195,7 +195,11 @@ private void sendMenuBar(){
          @Override
          public void actionPerformed(ActionEvent e) {
              display.setText("0");
-             i = 0;
+             tempfirst = 0.0;
+             for(int j = 0; j < 4; j++)
+             {
+                 operation[j] = false;
+             }
          }
          });
         
