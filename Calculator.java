@@ -11,7 +11,7 @@ package calculator;
  */
 import javax.swing.*;
 import java.awt.*;
-import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.util.*;
@@ -30,7 +30,7 @@ public class Calculator extends JFrame  {
      JMenuItem view;
      JMenuItem about;
      
-     JButton seven,eight,nine;
+     JButton one,two,three,four,five,six,seven,eight,nine;
       int i = 0; 
     String q ;
     public Calculator() {
@@ -45,7 +45,7 @@ public class Calculator extends JFrame  {
        display.setVisible(true);
         display.setBounds(10,10,324,50);
        display.setEditable(false);
-       display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+      // display.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
        display.setFont(new Font("Arial",Font.PLAIN,32));
        add(display);
     }
@@ -97,8 +97,134 @@ private void sendMenuBar(){
             
 }
  private void sendButton() {
-   
-     seven = new JButton("7");
+       
+     one = new JButton("1");
+       one.setBounds(10,194,65,55);
+       one.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "1";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"1";
+                display.setText(q);
+            }
+           }
+       });
+       add(one);
+     
+     two = new JButton("2");
+       two.setBounds(82,194,65,55);
+       two.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "2";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"2";
+                display.setText(q);
+            }
+           }
+       });
+       add(two);
+       three = new JButton("3");
+       three.setBounds(154,195,65,55);
+       three.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "3";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"3";
+                display.setText(q);
+            }
+           }
+       });
+       add(three);
+       four = new JButton("4");
+       four.setBounds(10,132,65,55);
+       four.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "4";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"4";
+                display.setText(q);
+            }
+           }
+       });
+       add(four);
+     five = new JButton("5");
+       five.setBounds(82,132,65,55);
+       five.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "5";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"5";
+                display.setText(q);
+            }
+           }
+       });
+       add(five);
+       seven = new JButton("7");
        seven.setBounds(10,70,65,55);
        seven.addActionListener(new ActionListener(){
            
@@ -123,6 +249,31 @@ private void sendMenuBar(){
            }
        });
        add(seven);
+     six = new JButton("6");
+       six.setBounds(154,132,65,55);
+       six.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+                
+            { 
+                q = "6";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"6";
+                display.setText(q);
+            }
+           }
+       });
+       add(six);
        eight = new JButton("8");
           eight.addActionListener(new ActionListener(){
            
@@ -148,10 +299,31 @@ private void sendMenuBar(){
        eight.setBounds(82,70,65,55);
        add(eight);
        nine = new JButton("9");
+           nine.addActionListener(new ActionListener(){
+           
+           @Override
+           public void actionPerformed(ActionEvent e) {
+            
+               if(display.getText().length() > 13)
+               {   return;}
+            if(i == 0) 
+            {
+                q = "9";
+                display.setText(q);
+             //display.append("7");
+            i = 1;
+            }
+              else
+            {
+                q = q+"9";
+                display.setText(q);
+            }
+           }
+       });
        nine.setBounds(154,70,65,55);
        add(nine);
     }
-
+   
     public static void main(String[] args) {
         Calculator  x = new Calculator();
         try{
