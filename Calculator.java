@@ -19,8 +19,7 @@ import java.util.*;
 public class Calculator extends JFrame  {
 
     JPanel zarayr;
-    JTextField display;
-    JButton operation;
+    JTextArea display;
      JMenuBar menuBar;
      JMenu file;
      JMenu edit;
@@ -31,9 +30,11 @@ public class Calculator extends JFrame  {
      JMenuItem about;
      
      JButton clear,equals,zero,decimal,poseneg,one,two,three,four,five,six,seven,eight,nine;
-     JButton divison,multiplication,substraction,addititon;
+     JButton divison,multiplication,substraction,addition;
      int i = 0; 
     String q ;
+    double tempfirst = 0.0,tempsecond = 0.0;
+    boolean[] operation = new boolean[4];
     public Calculator() {
         //setLayout(new GridLayout());
          setLayout(null);
@@ -42,7 +43,7 @@ public class Calculator extends JFrame  {
   sendButton();
     }
     private void sendDisplay(){
-        display = new JTextField("0");//maybe bug
+        display = new JTextArea("0");//maybe bug
        display.setVisible(true);
         display.setBounds(10,10,280,50);
        display.setEditable(false);
@@ -101,14 +102,92 @@ private void sendMenuBar(){
      
       divison = new JButton("/");
      divison.setBounds(226,70,65,55);
+     divison.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             
+             tempfirst = Double.parseDouble(display.getText());
+             display.setText("0");
+             operation[0] = true;
+             //System.out.println(tempfirst);
+         }
+         });
+        
     add( divison);
      multiplication = new JButton("*");
      multiplication.setBounds(226,132,65,55);
+      multiplication.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             
+             tempfirst = Double.parseDouble(display.getText());
+             display.setText("0");
+             operation[1] = true;
+             //System.out.println(tempfirst);
+         }
+         });
+     
      add(multiplication);
-     
-     
+     substraction = new JButton("-");
+     substraction.setBounds(226,194,65,55);
+      substraction.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             
+             tempfirst = Double.parseDouble(display.getText());
+             display.setText("0");
+             operation[2] = true;
+             //System.out.println(tempfirst);
+         }
+         });
+
+     add(substraction);
+     addition= new JButton("+");        
+     addition.setBounds(226,256,65,55);
+      addition.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             
+             tempfirst = Double.parseDouble(display.getText());
+             display.setText("0");
+             operation[3] = true;
+             //System.out.println(tempfirst);
+         }
+         });
+
+     add(addition);
      equals = new JButton("=");
      equals.setBounds(10,318,137,55);
+     equals.addActionListener(new ActionListener () {
+         @Override
+         public void actionPerformed(ActionEvent e) {
+             if(operation[0] == true)
+             {
+                 tempsecond = Double.parseDouble(display.getText());
+            display.setText(Double.toString(tempfirst / tempsecond));
+         }     
+             if(operation[1] == true)
+             {
+                 tempsecond = Double.parseDouble(display.getText());
+            display.setText(Double.toString(tempfirst * tempsecond));
+         }    
+             if(operation[2] == true)
+             {
+                 tempsecond = Double.parseDouble(display.getText());
+            display.setText(Double.toString(tempfirst - tempsecond));
+         }    
+             if(operation[3] == true)
+             {
+                 tempsecond = Double.parseDouble(display.getText());
+            display.setText(Double.toString(tempfirst + tempsecond));
+         }    
+             if(display.getText().endsWith(".0"))
+             {
+                 display.setText(display.getText().replace(".0", ""));
+             }
+         }
+         });
+        
      add(equals);
      clear = new JButton("clear");
       clear.setBounds(154,318,137,55);
@@ -129,21 +208,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 10)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "0";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"0";
-                display.setText(q);
-            }
+               if(display.getText().length() > 13)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("0");
+                return;
+                }
+           display.append("0");
            }
        });
        add(zero);
@@ -154,21 +225,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 10)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = ".";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+".";
-                display.setText(q);
-            }
+              if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase(".")){
+                display.setText(".");
+                return;
+                }
+           display.append(".");
            }
        });
        add(decimal);
@@ -194,20 +257,12 @@ private void sendMenuBar(){
            public void actionPerformed(ActionEvent e) {
             
                if(display.getText().length() > 10)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "1";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"1";
-                display.setText(q);
-            }
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("1");
+                return;
+                }
+           display.append("1");
            }
        });
        add(one);
@@ -219,22 +274,15 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "2";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"2";
-                display.setText(q);
-            }
+               if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("2");
+                return;
+                }
+           display.append("2");
            }
+           
        });
        add(two);
        three = new JButton("3");
@@ -244,21 +292,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 10)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "3";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"3";
-                display.setText(q);
-            }
+                if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("3");
+                return;
+                }
+           display.append("3");
            }
        });
        add(three);
@@ -270,20 +310,12 @@ private void sendMenuBar(){
            public void actionPerformed(ActionEvent e) {
             
                if(display.getText().length() > 10)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "4";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"4";
-                display.setText(q);
-            }
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("4");
+                return;
+                }
+           display.append("4");
            }
        });
        add(four);
@@ -294,21 +326,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "5";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"5";
-                display.setText(q);
-            }
+                if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("5");
+                return;
+                }
+           display.append("5");
            }
        });
        add(five);
@@ -319,21 +343,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "7";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"7";
-                display.setText(q);
-            }
+               if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("7");
+                return;
+                }
+           display.append("7");
            }
        });
        add(seven);
@@ -344,21 +360,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-                
-            { 
-                q = "6";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"6";
-                display.setText(q);
-            }
+                if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("6");
+                return;
+                }
+           display.append("6");
            }
        });
        add(six);
@@ -368,20 +376,13 @@ private void sendMenuBar(){
            @Override
            public void actionPerformed(ActionEvent e) {
             
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-            {
-                q = "8";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"8";
-                display.setText(q);
-            }
+              if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("8");
+                return;
+                }
+           display.append("8");
            }
        });
        eight.setBounds(82,70,65,55);
@@ -391,21 +392,13 @@ private void sendMenuBar(){
            
            @Override
            public void actionPerformed(ActionEvent e) {
-            
-               if(display.getText().length() > 13)
-               {   return;}
-            if(i == 0) 
-            {
-                q = "9";
-                display.setText(q);
-             //display.append("7");
-            i = 1;
-            }
-              else
-            {
-                q = q+"9";
-                display.setText(q);
-            }
+             if(display.getText().length() > 10)
+               return;
+                if(display.getText().equalsIgnoreCase("0")){
+                display.setText("9");
+                return;
+                }
+           display.append("9");
            }
        });
        nine.setBounds(154,70,65,55);
